@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: my-app # This label is used to match the selector in service
+spec: # Spec is the desired state of the deployment
+  replicas: 2
+  selector:
+    matchLabels:
+      app: my-app 
+  template:
+    metadata:
+      labels:
+        app: my-app # This label is used to match the selector in deployment
+    spec: # Spec is the desired state of the pod
+      containers: 
+      - name: nginx
+        image: nginx:1.16
+        ports:
+        - containerPort: 8080
