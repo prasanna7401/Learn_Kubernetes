@@ -1,0 +1,76 @@
+# Example for NFS Storage Backend
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv-nfs
+spec:
+  # Capacity of the volume
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  # Access mode of the volume & other properties
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: slow # or manual
+  mountOptions:
+    - hard
+    - nfsvers=4.1
+  # Way to consume the volume
+  nfs:
+    path: /tmp
+    server: nfs-server-ip-address
+
+---
+
+# Example for Google Cloud Storage Backend
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv-gfs
+  labels:
+    failure-domain.beta.kubernetes.io/zone: us-central1-a
+spec:
+  # Capacity of the volume
+  capacity:
+    storage: 40Gi
+  # Access mode of the volume & other properties
+  accessModes:
+    - ReadWriteOnce
+  # Way to consume the volume
+  gcePersistentDisk:
+    pdName: my-data-disk
+    fsType: ext4
+
+---
+
+# Example for Local Storage Backend
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv-local
+spec:
+  # Capacity of the volume
+  capacity:
+    storage: 10Gi
+  volumeMode: Filesystem
+  # Access mode of the volume & other properties
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Delete # or Recycle or Retain
+  # Way to consume the volume
+  storageClassName: local-storage
+  local:
+    path: /mnt/disks/ssd1
+  # Additional properties
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - my-node

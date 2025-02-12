@@ -1,0 +1,33 @@
+# Step 1: Create a PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: my-pvc
+spec:
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi # Requesting 1Gi of storage - so, whatever PV is available with 1Gi will be bound to this PVC
+  storageClassName: slow # or manual
+
+---
+# Step 2: Create a Pod that uses the PVC
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+    - name: my-container
+      image: nginx
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: my-pvc
+  volumes:
+  - name: my-pvc
+    persistentVolumeClaim:
+      claimName: my-pvc # This should match the PVC name
+  restartPolicy: Never
