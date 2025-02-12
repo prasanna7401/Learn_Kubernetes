@@ -2,7 +2,7 @@
 **Persistent Volumes:**
 - The attributes in the yaml file are specific to each storage type. 
 - Volumes cannot be placed inside a namespace.
-- DO NOT use local volumes for persistent storage for databases, as they do not tie to a specific node, and it may not survive cluster crashes.
+- DO NOT use local volumes for persistent storage for databases, as they tie to a specific node, and it may not survive cluster crashes.
 
 **Persistent Volume Claim**
 - `PersistentVolumeClaim` is used by an application to claim the use of a persistent volume. This must be in the same namespace as the pod using the claim.
