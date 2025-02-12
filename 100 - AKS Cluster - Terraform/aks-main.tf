@@ -1,4 +1,5 @@
 resource "azurerm_kubernetes_cluster" "aks-learn" {
+
   name                = "aks-learn-k8s"
   location            = data.azurerm_resource_group.rg-aks.location
   resource_group_name = data.azurerm_resource_group.rg-aks.name
@@ -34,3 +35,4 @@ resource "azurerm_kubernetes_cluster" "aks-learn" {
     EOT
   }
 }
+

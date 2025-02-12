@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: db-ingress
+  namespace: kubernetes-dashboard # or any of your choice
+spec:
+  rules:
+  - host: prasannadb.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: kubernetes-dashboard
+            port:
+              number: 80 # found using `kubectl get svc -n kubernetes-dashboard`

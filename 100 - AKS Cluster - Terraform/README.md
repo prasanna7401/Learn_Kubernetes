@@ -1,0 +1,1 @@
+Reference: https://stackoverflow.com/questions/69158600/terraform-how-to-find-azure-kubernetes-aks-vnet-id-for-network-peering
