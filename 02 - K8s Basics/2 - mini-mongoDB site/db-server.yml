@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: my-db
-  template:
+  template: 
     metadata:
       labels:
         app: my-db
@@ -21,7 +21,7 @@ spec:
         - containerPort: 27017
         env:
         - name: MONGO_INITDB_ROOT_USERNAME
-          #value:        
+          #value: something       
           valueFrom:
             secretKeyRef:
               name: db-secret

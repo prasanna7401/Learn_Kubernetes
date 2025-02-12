@@ -11,6 +11,7 @@ Note:
 2. In Minikube, external service will not automatically get an external IP (it will be _pending_). To solve this, run `minikube service <service_name>`
     ![image](../../.github/screenshots/2%20-%20k8s%20basics/start%20service.png)
     ![image](../../.github/screenshots/2%20-%20k8s%20basics/express-server.png)
+3. The default username:password for accessing the mongo-express server is `admin:pass`
 
 ### kubectl apply commands in order
     

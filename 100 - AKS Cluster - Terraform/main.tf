@@ -22,6 +22,15 @@ resource "azurerm_kubernetes_cluster" "aks-learn" {
   # Add AKS as your current context in kubeconfig file
   provisioner "local-exec" {
     command = "az aks get-credentials --resource-group ${data.azurerm_resource_group.rg-aks.name} --name ${azurerm_kubernetes_cluster.aks-learn.name}"
-    
+  }
+
+  # Clear contexts from kubeconfig during resource destruction
+  provisioner "local-exec" {
+    when    = destroy
+    command = <<EOT
+      kubectl config delete-context ${self.name}
+      kubectl config unset users.clusterUser_${self.resource_group_name}_${self.name}
+      kubectl config unset clusters.${self.name}
+    EOT
   }
 }
