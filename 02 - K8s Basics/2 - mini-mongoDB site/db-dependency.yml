@@ -1,6 +1,5 @@
 # Normally this file should not be commited to repo. But for learning purposes, we are committing it.
 
-
 apiVersion: v1
 kind: Secret
 metadata:

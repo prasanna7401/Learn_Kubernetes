@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: prasannadb-tls-secret
+  namespace: default
+type: kubernetes.io/tls
+data:
+  # Keys should be exactly tls.crt and tls.key
+  # Value should be actual file content, not paths
+  # Secret must be in the same namespace as the Ingress object
+  tls.crt: base64 encoded cert # `cat tls.crt | base64`
+  tls.key: base64 encoded key 
+  

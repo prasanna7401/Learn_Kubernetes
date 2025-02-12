@@ -1,0 +1,42 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: db-ingress-multipath-example
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  # If you want to enable TLS for HTTPS connections, uncomment the following lines
+  # tls:
+  # - hosts:
+  #   - admin.prasannadb.com
+  #   - www.prasannadb.com
+  #   secretName: prasannadb-tls-secret # Need to be created before. Refer to db-ingress-tls.yml
+  rules:
+  - host: admin.prasannadb.com # For admin users
+    http:
+      paths:
+      - path: /db
+        pathType: Prefix
+        backend:
+          service:
+            name: db-service
+            port:
+              number: 27017
+      - path: /logs
+        pathType: Prefix
+        backend:
+          service:
+            name: logging-service
+            port:
+              number: 9999
+  - host: www.prasannadb.com # For common users
+    http:
+      paths:
+      - path: /shopping
+        pathType: Prefix
+        backend:
+          service:
+            name: shopping-service
+            port:
+              number: 8080
+      
