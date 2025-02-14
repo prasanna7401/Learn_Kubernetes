@@ -11,3 +11,7 @@ Lab: To setup your own lab environment, you can either use `minikube`, local nod
     2. Add a new line: `source <(kubectl completion bash)`.
 
     > Note: If you are using an alias _k_ for kubectl, you need to the add a new line with `complete -o default -F __start_kubectl k`.
+
+## Command Cheatsheet
+
+![cheatsheat](./.github/screenshots/command%20cheatsheet.jpg)
