@@ -12,6 +12,7 @@ Lab: To setup your own lab environment, you can either use `minikube`, local nod
 
     > Note: If you are using an alias _k_ for kubectl, you need to the add a new line with `complete -o default -F __start_kubectl k`.
 
+2. Use `kubectl api-resources --namespaced=true` or `false` to find the Shortforms, APIVersions, and Kind for any yaml.
 ## Command Cheatsheet
 
 ![cheatsheat](./.github/screenshots/command%20cheatsheet.jpg)
