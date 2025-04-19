@@ -4,7 +4,7 @@ Details:
 - Upgrade Master node first & then proceed to workers
 - In each node, upgrade kubeadm first, and then kubectl and kubelet
 
-Master node upgrade:
+**Master node upgrade**:
 ```sh
 # To modify remote package source
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
@@ -33,7 +33,7 @@ sudo systemctl restart kubelet
 kubectl uncordon controlplane # make it schedulable
 ```
 
-Worker node upgrade (for linux):
+**Worker node upgrade** (for linux):
 
 ```sh
 kubectl drain node01 --ignore-daemonsets
@@ -59,5 +59,4 @@ sudo systemctl daemon-reload
 sudo systemctl restart kubelet
 
 kubectl uncordon node01
-
 ```
